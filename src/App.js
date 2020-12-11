@@ -22,9 +22,7 @@ const App = () => {
 
   const postData = (e) => {
     e.preventDefault();
-    if (!activity) {
-      return null;
-    }
+    if (!activity) return;
     fetch("/activities", {
       method: "POST",
       body: JSON.stringify({
@@ -39,21 +37,20 @@ const App = () => {
       })
       .then((data) => {
         console.log({ data });
-        // calling getData after the post data comes back
-        getData();
-        // setActivitiesList(activitiesList.concat(activity));
+        setActivitiesList(activitiesList.concat(data));
+        setActivity("");
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
-  console.log({ activitiesList });
+  // console.log({ activitiesList });
   return (
     <div className="container-fullwidth">
       <h1>Current Activity</h1>
-      {activitiesList.map((item, index) => (
-        <div key={index}>{item.name}</div>
+      {activitiesList.map((item) => (
+        <div key={item._id}>{item.name}</div>
       ))}
       <form onSubmit={postData}>
         <input
