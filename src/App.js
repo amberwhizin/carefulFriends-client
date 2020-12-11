@@ -46,8 +46,8 @@ const App = () => {
   return (
     <div className="container-fullwidth">
       <h1>Current Activity</h1>
-      {activitiesList.map((item) => (
-        <div key={item}>{item}</div>
+      {activitiesList.map((item, index) => (
+        <div key={index}>{item.name}</div>
       ))}
       <form onSubmit={postData}>
         <input
@@ -55,6 +55,7 @@ const App = () => {
           onChange={(e) => setActivity(e.target.value)}
           value={activity}
         />
+        <input type="submit" value="POST" />
       </form>
     </div>
   );
