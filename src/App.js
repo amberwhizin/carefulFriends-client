@@ -2,44 +2,60 @@ import React, { useEffect, useState } from "react";
 
 const App = () => {
   //const [hasErrors, setErrors] = useState(false);
-  const [activity, setActivity] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
+  const [activitiesList, setActivitiesList] = useState([]);
+  const [activity, setActivity] = useState("");
 
   useEffect(() => {
+    console.log("in activity room");
+    fetch("/activities")
+      .then((data) => data.json())
+      .then((parsedData) => {
+        setActivitiesList(parsedData);
+      })
+      .catch((e) => console.error(e));
+  }, []);
+
+  const postData = (e) => {
+    e.preventDefault();
+    if (!activity) {
+      return null;
+    }
     fetch("/activities", {
       method: "POST",
       body: JSON.stringify({
-        activity,
+        name: activity,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        console.log({ res });
         return res.json();
       })
       .then((data) => {
         console.log({ data });
-        setActivity({ data });
+        setActivitiesList(activitiesList.concat(activity));
       })
-      .catch((data) => {
-        setActivity(data);
+      .catch((e) => {
+        console.error(e);
       });
+  };
 
-    // get
-    fetch("/activities", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((data) => data.json())
-      .then((parsedData) => setActivity({ activity: parsedData }));
-  }, []);
-
+  console.log({ activitiesList });
   return (
     <div className="container-fullwidth">
-      <h1>Current Activity {JSON.stringify(activity)}</h1>
+      <h1>Current Activity</h1>
+      {activitiesList.map((item) => (
+        <div key={item}>{item}</div>
+      ))}
+      <form onSubmit={postData}>
+        <input
+          type="text"
+          onChange={(e) => setActivity(e.target.value)}
+          value={activity}
+        />
+      </form>
     </div>
   );
 };
