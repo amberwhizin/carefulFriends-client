@@ -2,19 +2,23 @@ import React, { useEffect, useState } from "react";
 
 const App = () => {
   //const [hasErrors, setErrors] = useState(false);
-  const [currentUser, setCurrentUser] = useState("");
+  // const [currentUser, setCurrentUser] = useState("");
   const [activitiesList, setActivitiesList] = useState([]);
   const [activity, setActivity] = useState("");
 
   useEffect(() => {
     console.log("in activity room");
+    getData();
+  }, []);
+
+  const getData = () => {
     fetch("/activities")
       .then((data) => data.json())
       .then((parsedData) => {
         setActivitiesList(parsedData);
       })
       .catch((e) => console.error(e));
-  }, []);
+  };
 
   const postData = (e) => {
     e.preventDefault();
@@ -35,7 +39,9 @@ const App = () => {
       })
       .then((data) => {
         console.log({ data });
-        setActivitiesList(activitiesList.concat(activity));
+        // calling getData after the post data comes back
+        getData();
+        // setActivitiesList(activitiesList.concat(activity));
       })
       .catch((e) => {
         console.error(e);
