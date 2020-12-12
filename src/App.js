@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const App = () => {
   //const [hasErrors, setErrors] = useState(false);
-  // const [currentUser, setCurrentUser] = useState("");
+  // const [currentUser, setCurrentUser] = useState("");n
   const [activitiesList, setActivitiesList] = useState([]);
   const [activity, setActivity] = useState("");
 
