@@ -42,6 +42,9 @@ const DoingActivity = ({ activity }) => {
   return <div>{activity}</div>;
 };
 
+// if activity is an empty "", return my og options page
+// else return the user is doing the activity page
+// setActivity is setting the state of whatever activity the user clicked, and doing is that activity
 const Options = () => {
   const [activity, setActivity] = useState("");
   if (activity === "") {
