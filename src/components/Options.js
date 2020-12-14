@@ -1,7 +1,10 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 
 const ChooseYourOwnAdventure = ({ setActivity }) => (
@@ -38,8 +41,18 @@ const ChooseYourOwnAdventure = ({ setActivity }) => (
   </div>
 );
 
+// the string that images is setting upon clicking one
 const DoingActivity = ({ activity }) => {
-  return <div>{activity}</div>;
+  return (
+    <div className="container">
+      <h4>Your Doing {activity}!</h4>
+      <h4>...</h4>
+      <h4>When your done, click here!</h4>
+     <Link to="/">
+     <Button>Post</Button>
+     </Link>
+    </div>
+  );
 };
 
 // if activity is an empty "", return my og options page
