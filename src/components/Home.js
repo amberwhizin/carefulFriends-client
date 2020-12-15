@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   // const [currentUser, setCurrentUser] = useState("");
   const [activitiesList, setActivitiesList] = useState([]);
-  const [activity, setActivity] = useState("");
+  // const [activity, setActivity] = useState("");
 
   useEffect(() => {
     console.log("in activity room");
@@ -36,30 +36,6 @@ const Home = () => {
       .catch((e) => console.error(e));
   };
 
-  const postData = (e) => {
-    e.preventDefault();
-    if (!activity) return;
-    fetch("/activities", {
-      method: "POST",
-      body: JSON.stringify({
-        name: activity,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log({ data });
-        setActivitiesList(activitiesList.concat(data));
-        setActivity("");
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
   return (
     <div className="container">
       {/* message board */}
@@ -68,17 +44,16 @@ const Home = () => {
       <Link to="/options">
         <Button variant="primary">Start New Session</Button>
       </Link>
-      
-      <form onSubmit={postData}>
-        {/* <input
+      {/* <form onSubmit={postData}> */}
+      {/* <input
           type="text"
           onChange={(e) => setActivity(e.target.value)}
           value={activity}
         /> */}
-      </form>
-      {/* {activitiesList.map((item) => (
+      {/* </form> */}
+      {activitiesList.map((item) => (
         <div key={item._id}>{item.name}</div>
-      ))} */}
+      ))}
     </div>
   );
 };
