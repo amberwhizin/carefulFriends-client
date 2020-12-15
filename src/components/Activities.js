@@ -89,7 +89,7 @@ const DoingActivity = ({ activity }) => {
 // if activity is an empty "", return my og options page
 // else return the user is doing the activity page
 // setActivity is setting the state of whatever activity the user clicked, and doing is that activity
-const Options = () => {
+const Activities = () => {
   const [activity, setActivity] = useState("");
 
   if (activity === "") {
@@ -97,4 +97,4 @@ const Options = () => {
   }
   return <DoingActivity activity={activity} />;
 };
-export default Options;
+export default Activities;
