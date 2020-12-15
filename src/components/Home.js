@@ -13,22 +13,8 @@ const Home = () => {
     getData();
   }, []);
 
-  useEffect(() => {
-    console.log("in options room");
-    getOptionPage();
-  }, []);
-
   const getData = () => {
     fetch("/activities")
-      .then((data) => data.json())
-      .then((parsedData) => {
-        setActivitiesList(parsedData);
-      })
-      .catch((e) => console.error(e));
-  };
-
-  const getOptionPage = () => {
-    fetch("/options")
       .then((data) => data.json())
       .then((parsedData) => {
         setActivitiesList(parsedData);
@@ -41,16 +27,9 @@ const Home = () => {
       {/* message board */}
       <h1>Welcome To Your Community</h1>
 
-      <Link to="/options">
+      <Link to="/activities">
         <Button variant="primary">Start New Session</Button>
       </Link>
-      {/* <form onSubmit={postData}> */}
-      {/* <input
-          type="text"
-          onChange={(e) => setActivity(e.target.value)}
-          value={activity}
-        /> */}
-      {/* </form> */}
       {activitiesList.map((item) => (
         <div key={item._id}>{item.name}</div>
       ))}
@@ -59,3 +38,22 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+//////////////////////////////
+//////////graveyard///////////
+/////////////////////////////
+// {
+//   /* <form onSubmit={postData}> */
+// }
+// {
+//   /* <input
+//           type="text"
+//           onChange={(e) => setActivity(e.target.value)}
+//           value={activity}
+//         /> */
+// }
+// {
+//   /* </form> */
+// }
