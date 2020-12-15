@@ -1,11 +1,37 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
+import Spinner from "react-bootstrap/Spinner";
+import { useHistory } from "react-router-dom";
+
+const postData = (activity, history, setError) => {
+  if (!activity) return;
+  fetch("/activities", {
+    method: "POST",
+    body: JSON.stringify({
+      name: activity,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (res.status !== 400) {
+        // useHistory provides a minimal API that lets you navigate state, in this case I used it instead of Link!
+        history.push("/");
+      } else {
+        setError("Something went wrong... sorry!");
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+      setError("Something went wrong... sorry!");
+    });
+};
 
 const ChooseYourOwnAdventure = ({ setActivity }) => (
   <div className="container">
@@ -43,14 +69,20 @@ const ChooseYourOwnAdventure = ({ setActivity }) => (
 
 // the string that images is setting upon clicking one
 const DoingActivity = ({ activity }) => {
+  const [error, setError] = useState("");
+  const history = useHistory();
+  console.log({ error });
   return (
     <div className="container">
       <h4>Your Doing {activity}!</h4>
-      <h4>...</h4>
+      <div>
+        <Spinner animation="border" variant="info" />
+      </div>
       <h4>When your done, click here!</h4>
-     <Link to="/">
-     <Button>Post</Button>
-     </Link>
+      <Button onClick={() => postData(activity, history, setError)}>
+        Post
+      </Button>
+      {error && <div>{error}</div>}
     </div>
   );
 };
@@ -60,6 +92,7 @@ const DoingActivity = ({ activity }) => {
 // setActivity is setting the state of whatever activity the user clicked, and doing is that activity
 const Options = () => {
   const [activity, setActivity] = useState("");
+
   if (activity === "") {
     return <ChooseYourOwnAdventure setActivity={setActivity} />;
   }
