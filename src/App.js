@@ -1,11 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Routes from "./components/Routes";
+import BootstrapNavbar from "./components/Navbar";
 
 const App = () => {
   return (
-    <div className="container">
+    <>
+      <BootstrapNavbar />
       <Routes />
-    </div>
+    </>
   );
 };
 
