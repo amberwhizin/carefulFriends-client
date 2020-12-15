@@ -39,24 +39,26 @@ const ChooseYourOwnAdventure = ({ setActivity }) => (
     <Container>
       <Row>
         <Col xs={6} md={4}>
+          <h1 className="push-ups">5 Push-Ups</h1>
           <Image
             src="https://images.squarespace-cdn.com/content/v1/5cd493f1185add0001e4670d/1558988155986-PY602J3JHUN77WUMVRXS/ke17ZwdGBToddI8pDm48kFyD7pzB8zoMIVY5aiUuFlp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0jG2lbcDYBOeMi4OFSYem8DMb5PTLoEDdB05UqhYu-xbnSznFxIRsaAU-3g5IaylIg/image-asset.jpeg?format=2500w"
             rounded
-            className="image-pick-activity"
-            onClick={() => setActivity("5 pushups")}
+            className="background-image"
+            onClick={() => setActivity("5 Push-Ups")}
           />
-       
+          <h1 className="sit-ups">15 Sit-Ups</h1>
           <Image
             src="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/08/14210638/sharpei-puppies-playing-in-grass.jpg"
             rounded
-            className="image-pick-activity"
-            onClick={() => setActivity("15 situps")}
+            className="background-image"
+            onClick={() => setActivity("15 Sit-Ups")}
           />
+          <h1 className="squats">5 Squats</h1>
           <Image
             src="https://www.soniamphotography.com/wp-content/uploads/2015/07/Cavoodle-puppy-1.jpg"
             rounded
-            className="image-pick-activity"
-            onClick={() => setActivity("5 squats")}
+            className="background-image"
+            onClick={() => setActivity("5 Squats")}
           />
         </Col>
       </Row>

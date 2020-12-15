@@ -3,18 +3,43 @@
   width: 100%;
 }
 
-
-.image-pick-activity {
-  /* background-image: url("https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/08/14210638/sharpei-puppies-playing-in-grass.jpg"); */
+.background-image {
+  overflow: hidden;
+  border: 4px solid green;
+  opacity: 0.6;
   max-height: 300px;
   margin-bottom: 20px;
   margin-top: 30px;
-  margin-left: 250px;
+  /* margin-left: 250px; */
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.image-pick-activity:hover {
-  color: grey;
+.background-image:hover {
+  /* color: black; */
   cursor: pointer;
 }
+
+.push-ups {
+  position: absolute;
+  left: 63%;
+  top: 18%;
+  transform: translate(-50%, -50%);
+}
+
+.sit-ups {
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.squats {
+  position: absolute;
+  left: 60%;
+  top: 82%;
+  transform: translate(-50%, -50%);
+}
+
+
