@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  // const [currentUser, setCurrentUser] = useState("");
   const [activitiesList, setActivitiesList] = useState([]);
   // const [activity, setActivity] = useState("");
 
