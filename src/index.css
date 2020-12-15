@@ -1,25 +1,20 @@
 .container {
   text-align: center;
+  width: 100%;
 }
 
+
 .image-pick-activity {
+  /* background-image: url("https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/08/14210638/sharpei-puppies-playing-in-grass.jpg"); */
   max-height: 300px;
   margin-bottom: 20px;
   margin-top: 30px;
+  margin-left: 250px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .image-pick-activity:hover {
   color: grey;
+  cursor: pointer;
 }
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
