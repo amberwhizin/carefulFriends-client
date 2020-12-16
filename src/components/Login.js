@@ -5,16 +5,17 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
-  const SignUpUser = (e) => {
+  const LoginUser = (e) => {
     e.preventDefault();
-    fetch("/signup", {
+    fetch("/login", {
       method: "POST",
       body: JSON.stringify({
         name: user,
@@ -24,8 +25,9 @@ const SignUp = () => {
         "Content-Type": "application/json",
       },
     })
+      .then((response) => response.json())
       .then((res) => {
-        res.json();
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +35,7 @@ const SignUp = () => {
   };
   return (
     <div>
-      <Form onSubmit={SignUpUser}>
+      <Form onSubmit={LoginUser}>
         <Form.Label htmlFor="inlineFormInputGroupUsername2" srOnly>
           Username
         </Form.Label>
@@ -61,17 +63,17 @@ const SignUp = () => {
         </Form.Group>
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit" onClick={SignUpUser}>
-              Sign Up
+            <Button type="submit" onClick={LoginUser}>
+              Sign In
             </Button>
           </Col>
         </Form.Group>
       </Form>
-      <p>Already have an account?</p>
-      <Link to="/login">
-        <Button>Login</Button>
+      <p>Don't have an account?</p>
+      <Link to="/signup">
+        <Button>Create New User</Button>
       </Link>
     </div>
   );
 };
-export default SignUp;
+export default Login;
