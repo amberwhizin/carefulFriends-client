@@ -34,9 +34,15 @@ const Home = () => {
       <Link to="/activities">
         <Button variant="primary">Start New Session</Button>
       </Link>
-      {activitiesList.map((item) => (
-        <div key={item._id}>{item.name}</div>
-      ))}
+      {activitiesList.map((item) => {
+        console.log(item);
+        return (
+          <div key={item._id}>
+            <h6>{item.owner}</h6> did
+            <h6>{item.activityName}</h6>
+          </div>
+        );
+      })}
     </div>
   );
 };

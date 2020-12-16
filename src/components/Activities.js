@@ -13,7 +13,7 @@ const postData = (activity, history, setError) => {
   fetch("/activities", {
     method: "POST",
     body: JSON.stringify({
-      name: activity,
+      activityName: activity,
     }),
     headers: {
       "Content-Type": "application/json",
