@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
-import { Link } from "react-router-dom";
+import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import { Link, useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const SignUpUser = (e) => {
     e.preventDefault();
@@ -24,8 +24,9 @@ const SignUp = () => {
         "Content-Type": "application/json",
       },
     })
+      .then((response) => response.json())
       .then((res) => {
-        res.json();
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);

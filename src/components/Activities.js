@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
+import { useHistory } from "react-router-dom";
 
 const postData = (activity, history, setError) => {
   if (!activity) return;
