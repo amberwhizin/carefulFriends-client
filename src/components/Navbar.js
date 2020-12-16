@@ -2,6 +2,7 @@ import React from "react";
 import BootstrapNavbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
+
 import { useHistory } from "react-router-dom";
 
 const Navbar = () => {
@@ -23,9 +24,11 @@ const Navbar = () => {
       });
   };
   return (
-    <BootstrapNavbar className="navbar" bg="light" sticky="top">
+    <BootstrapNavbar className="color-nav" varient="light" sticky="top">
       <BootstrapNavbar.Brand href="/">Home</BootstrapNavbar.Brand>
-      <Button onClick={logout}>logout</Button>
+      <Button id="logout-button" className="ml-auto" onClick={logout}>
+        Logout
+      </Button>
     </BootstrapNavbar>
   );
 };

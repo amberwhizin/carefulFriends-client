@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import { Link, useHistory } from "react-router-dom";
 
 const Home = () => {
   const [activitiesList, setActivitiesList] = useState([]);
@@ -29,17 +29,25 @@ const Home = () => {
   return (
     <div className="container">
       {/* message board */}
-      <h1>Welcome To Your Community</h1>
-
+      <h1 className="title">Community Encouragements</h1>
       <Link to="/activities">
-        <Button variant="primary">Start New Session</Button>
+        <Button id="start-session-button" variant="primary">
+          start new session
+        </Button>
       </Link>
       {activitiesList.map((item) => {
         console.log(item);
         return (
-          <div key={item._id}>
-            <h6>{item.owner}</h6> did
-            <h6>{item.activityName}</h6>
+          <div key={item._id} className="posted-activity">
+            <Card
+              className="shadow-sm p-3 mb-5 bg-white rounded"
+              style={{ width: "20rem" }}
+            >
+              <Card.Body>
+                <h4>{item.owner} did</h4>
+                <h4>{item.activityName}!</h4>
+              </Card.Body>
+            </Card>
           </div>
         );
       })}

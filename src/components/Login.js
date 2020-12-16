@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState("");
