@@ -1,12 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   const [activitiesList, setActivitiesList] = useState([]);
   // const [activity, setActivity] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     console.log("in activity room");
@@ -17,6 +18,9 @@ const Home = () => {
     fetch("/activities")
       .then((data) => data.json())
       .then((parsedData) => {
+        if (parsedData.error) {
+          history.push("/login");
+        }
         setActivitiesList(parsedData);
       })
       .catch((e) => console.error(e));
@@ -38,8 +42,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
 
 //////////////////////////////
 //////////graveyard///////////
