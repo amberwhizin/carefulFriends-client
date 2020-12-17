@@ -6,6 +6,10 @@ Deployed on Heroku:
 
 - https://carefulfriends-client.herokuapp.com/
 
+API Repo:
+
+https://github.com/amberwhizin/carefulfriends-api
+
 ## Technologies
 
 - Fullstack MERN App
