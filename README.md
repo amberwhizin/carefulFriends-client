@@ -12,7 +12,8 @@ https://github.com/amberwhizin/carefulfriends-api
 
 ## Technologies
 
-- Fullstack MERN App
+- Fullstack MERN App 
+- Full CRUD
 
 ### Front-End
 
@@ -20,14 +21,6 @@ https://github.com/amberwhizin/carefulfriends-api
 2. React-Router-Dom
 3. React Bootstrap
 4. CSS3
-
-<!-- ## Back-End
-
-1. Express
-2. MongoDB
-3. Mongoose
-4. Jsonwebtoken -->
-<!-- - Added Full CRUD -->
 
 ## Useful Applications
 
