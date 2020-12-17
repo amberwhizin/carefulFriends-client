@@ -1,13 +1,15 @@
-# CarefulFriends FrontEnd 
+# CarefulFriends FrontEnd
 
 This a wellness app, for you to get through covid in one piece. If you don’t like exercise, or have just stopped it all together then this app can help you. The app was inspired by my brother, he and his friends made each other accountable for their exercise habits. If my brother did 5 push- ups then he would send a text to their group message letting them know. They were there to encourage positive behaviors for each other. With depression and anxiety disorders skyrocketing I wanted to make something that would support people through the pandemic and beyond it. This app creates healthy habits for long term use, you don’t have to overwhelm yourself with big goals i.e. running a marathon, use this app and feel good about yourself and feel good in general through accountability and encouragements from like minded individuals.
 
 Deployed on Heroku:
+
 - https://carefulfriends-client.herokuapp.com/
 
 ## Technologies
 
 - Fullstack MERN App
+
 ### Front-End
 
 1. React
@@ -22,6 +24,7 @@ Deployed on Heroku:
 3. Mongoose
 4. Jsonwebtoken -->
 <!-- - Added Full CRUD -->
+
 ## Useful Applications
 
 1. Postman
@@ -29,6 +32,7 @@ Deployed on Heroku:
 3. Heroku
 4. Trello
 5. Quiver
+
 ## Approach
 
 - Organize into manageable pieces using Google Docs and Trello
@@ -43,6 +47,7 @@ Deployed on Heroku:
 1st Wireframe:
 
 https://projects.invisionapp.com/freehand/document/3PJhxFD9K
+
 ## User Stories
 
 Sign up or Sign in to a secure account
@@ -74,7 +79,6 @@ Logout
 - Add redux
 - A schedule button option, to remind users to do activity later
 - Add emoji option
--
 
 ## Credit
 
@@ -83,5 +87,3 @@ I would like to thank:
 The GA Instructors and staff for all the support and help through the entire course!!!
 
 My fellow classmates for sage advice and support!
-
-
