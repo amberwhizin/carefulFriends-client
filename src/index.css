@@ -40,6 +40,10 @@ body {
   border: #3b3a36;
 }
 
+#trash:hover {
+  cursor: pointer;
+}
+
 /* buttons */
 #start-session-button {
   background-color: #ffa07a;

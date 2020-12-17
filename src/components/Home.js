@@ -8,7 +8,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
-import { FaRegCommentDots } from "react-icons/fa";
+import { FaRegCommentDots, FaRegTrashAlt } from "react-icons/fa";
 
 const ActivityCard = ({ activity, getData }) => {
   const [isCommenting, setIsCommenting] = useState(false);
@@ -17,6 +17,31 @@ const ActivityCard = ({ activity, getData }) => {
     e.preventDefault();
     fetch("/comment", {
       method: "POST",
+      body: JSON.stringify({
+        text: comment,
+        _activityId: activity._id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        getData();
+        setComment("");
+        setIsCommenting(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const deleteComment = (index) => {
+    const userComments = activity.comments.filter((i) => {
+      return i !== index;
+    });
+    const currentItem = userComments[index];
+    fetch("/comment/" + currentItem._id, {
+      method: "DELETE",
       body: JSON.stringify({
         text: comment,
         _activityId: activity._id,
@@ -48,10 +73,15 @@ const ActivityCard = ({ activity, getData }) => {
             <h4>{activity.owner} did</h4>
             <h4>{activity.activityName}!</h4>
           </ListGroup.Item>
-          {activity.comments.map((activitiesComment) => {
+          {activity.comments.map((activitiesComment, i) => {
             return (
               <ListGroup.Item key={activitiesComment._id}>
-                {activitiesComment.text}
+                <div>{activitiesComment.text}</div>
+                <FaRegTrashAlt
+                  id="trash"
+                  className="ml-auto"
+                  onClick={() => deleteComment(i)}
+                />
               </ListGroup.Item>
             );
           })}
