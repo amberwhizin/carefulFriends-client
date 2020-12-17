@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Home";
-
 import Activities from "./Activities";
 import SignUp from "./SignUp";
 import Login from "./Login";
