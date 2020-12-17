@@ -57,7 +57,10 @@ const ActivityCard = ({ activity, getData }) => {
           })}
         </ListGroup>
         {!isCommenting && (
-          <Button onClick={() => setIsCommenting(true)}>
+          <Button
+            className="icon-comment"
+            onClick={() => setIsCommenting(true)}
+          >
             <FaRegCommentDots />
           </Button>
         )}

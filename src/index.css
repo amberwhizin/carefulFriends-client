@@ -31,6 +31,15 @@ body {
   margin-top: 20px;
 }
 
+.icon-comment {
+  background-color: #c0c0c0;
+  border: #c0c0c0;
+}
+.icon-comment:hover {
+  background-color: #3b3a36;
+  border: #3b3a36;
+}
+
 /* buttons */
 #start-session-button {
   background-color: #ffa07a;
