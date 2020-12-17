@@ -10,17 +10,33 @@ import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
 import { FaRegCommentDots } from "react-icons/fa";
 
-const ActivityCard = ({ item }) => {
+const ActivityCard = ({ activity, getData }) => {
   const [isCommenting, setIsCommenting] = useState(false);
   const [comment, setComment] = useState("");
   const createComment = (e) => {
     e.preventDefault();
-    setComment("");
-    setIsCommenting(false);
-    console.log(comment);
+    fetch("/comment", {
+      method: "POST",
+      body: JSON.stringify({
+        text: comment,
+        _activityId: activity._id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        getData();
+        setComment("");
+        setIsCommenting(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
-    <div key={item._id} className="posted-activity">
+    <div key={activity._id} className="posted-activity">
       <Card
         className="shadow-sm p-3 mb-5 bg-white rounded"
         style={{
@@ -29,10 +45,10 @@ const ActivityCard = ({ item }) => {
       >
         <ListGroup variant="flush">
           <ListGroup.Item>
-            <h4>{item.owner} did</h4>
-            <h4>{item.activityName}!</h4>
+            <h4>{activity.owner} did</h4>
+            <h4>{activity.activityName}!</h4>
           </ListGroup.Item>
-          {item.comments.map((activitiesComment) => {
+          {activity.comments.map((activitiesComment) => {
             return (
               <ListGroup.Item key={activitiesComment._id}>
                 {activitiesComment.text}
@@ -91,8 +107,14 @@ const Home = () => {
           start new session
         </Button>
       </Link>
-      {activitiesList.map((item) => {
-        return <ActivityCard item={item} key={item._id} />;
+      {activitiesList.map((activity) => {
+        return (
+          <ActivityCard
+            activity={activity}
+            key={activity._id}
+            getData={getData}
+          />
+        );
       })}
     </Container>
   );
