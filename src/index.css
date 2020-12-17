@@ -100,23 +100,19 @@ body {
   cursor: pointer;
 }
 
-.push-ups {
-  position: absolute;
-  left: 63%;
-  top: 18%;
-  transform: translate(-50%, -50%);
+.image-container {
+  position: relative;
 }
 
-.sit-ups {
+.image-text {
   position: absolute;
-  left: 60%;
+  width: 100%;
+  text-align: center;
   top: 50%;
-  transform: translate(-50%, -50%);
 }
 
-.squats {
-  position: absolute;
-  left: 60%;
-  top: 82%;
-  transform: translate(-50%, -50%);
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

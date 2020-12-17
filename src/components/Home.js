@@ -170,7 +170,6 @@ const ActivityCard = ({ activity, getData }) => {
 
 const Home = () => {
   const [activitiesList, setActivitiesList] = useState([]);
-  // const [activity, setActivity] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -191,7 +190,7 @@ const Home = () => {
   };
 
   return (
-    <Container>
+    <div className="center-container">
       {/* message board */}
       <h1 className="title">Community Encouragements</h1>
       <Link to="/activities">
@@ -208,25 +207,8 @@ const Home = () => {
           />
         );
       })}
-    </Container>
+    </div>
   );
 };
 
 export default Home;
-
-//////////////////////////////
-//////////graveyard///////////
-/////////////////////////////
-// {
-//   /* <form onSubmit={postData}> */
-// }
-// {
-//   /* <input
-//           type="text"
-//           onChange={(e) => setActivity(e.target.value)}
-//           value={activity}
-//         /> */
-// }
-// {
-//   /* </form> */
-// }
