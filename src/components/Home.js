@@ -8,7 +8,69 @@ import ListGroup from "react-bootstrap/ListGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
-import { FaRegCommentDots, FaRegTrashAlt } from "react-icons/fa";
+import { FaRegCommentDots, FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
+
+const Comment = ({
+  activitiesComment,
+  deleteComment,
+  index,
+  activity,
+  getData,
+}) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingComment, setEditingComment] = useState(activitiesComment.text);
+  const updateComment = (e) => {
+    e.preventDefault();
+    fetch("/comment/" + activitiesComment._id, {
+      method: "PUT",
+      body: JSON.stringify({
+        text: editingComment,
+        _activityId: activity._id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        getData();
+        setIsEditing(false);
+      })
+      .catch((error) => {
+        setIsEditing(false);
+        console.log(error);
+      });
+  };
+  if (!isEditing) {
+    return (
+      <ListGroup.Item key={activitiesComment._id}>
+        <div>{activitiesComment.text}</div>
+        <div>- {activitiesComment.owner}</div>
+        <FaRegTrashAlt
+          id="trash"
+          className="ml-auto"
+          onClick={() => deleteComment(index)}
+        />
+        <FaRegEdit
+          id="trash"
+          className="ml-auto"
+          onClick={() => setIsEditing(true)}
+        />
+      </ListGroup.Item>
+    );
+  }
+  return (
+    <Form onSubmit={updateComment}>
+      <InputGroup className="mb-2 mr-sm-2">
+        <FormControl
+          placeholder="Update comment"
+          value={editingComment}
+          onChange={(e) => setEditingComment(e.target.value)}
+        />
+      </InputGroup>
+    </Form>
+  );
+};
 
 const ActivityCard = ({ activity, getData }) => {
   const [isCommenting, setIsCommenting] = useState(false);
@@ -73,18 +135,15 @@ const ActivityCard = ({ activity, getData }) => {
             <h4>{activity.owner} did</h4>
             <h4>{activity.activityName}!</h4>
           </ListGroup.Item>
-          {activity.comments.map((activitiesComment, i) => {
-            return (
-              <ListGroup.Item key={activitiesComment._id}>
-                <div>{activitiesComment.text}</div>
-                <FaRegTrashAlt
-                  id="trash"
-                  className="ml-auto"
-                  onClick={() => deleteComment(i)}
-                />
-              </ListGroup.Item>
-            );
-          })}
+          {activity.comments.map((activitiesComment, i) => (
+            <Comment
+              activitiesComment={activitiesComment}
+              deleteComment={deleteComment}
+              activity={activity}
+              getData={getData}
+              index={i}
+            />
+          ))}
         </ListGroup>
         {!isCommenting && (
           <Button
