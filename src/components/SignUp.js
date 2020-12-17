@@ -33,15 +33,13 @@ const SignUp = () => {
       });
   };
   return (
-    <div>
+    <div className="enter-page">
       <Form onSubmit={SignUpUser}>
+        <p>Username</p>
         <Form.Label htmlFor="inlineFormInputGroupUsername2" srOnly>
           Username
         </Form.Label>
         <InputGroup className="mb-2 mr-sm-2">
-          <InputGroup.Prepend>
-            <InputGroup.Text>@</InputGroup.Text>
-          </InputGroup.Prepend>
           <FormControl
             id="inlineFormInputGroupUsername2"
             placeholder="Username"
@@ -49,10 +47,8 @@ const SignUp = () => {
           />
         </InputGroup>
         <Form.Group as={Row} controlId="formHorizontalPassword">
-          {/* <Form.Label column sm={2}>
-            Password
-          </Form.Label> */}
-          <Col sm={4}>
+          <Col>
+            <p className="enter-text">Password</p>
             <FormControl
               type="password"
               placeholder="Password"
@@ -61,8 +57,12 @@ const SignUp = () => {
           </Col>
         </Form.Group>
         <Form.Group as={Row}>
-          <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit" onClick={SignUpUser}>
+          <Col sm={{ span: 10, offset: 3 }}>
+            <Button
+              type="submit"
+              onClick={SignUpUser}
+              className="enter-button"
+            >
               Sign Up
             </Button>
           </Col>
@@ -70,7 +70,7 @@ const SignUp = () => {
       </Form>
       <p>Already have an account?</p>
       <Link to="/login">
-        <Button>Login</Button>
+        <Button sm={{ span: 10, offset: 3 }}>Login</Button>
       </Link>
     </div>
   );
