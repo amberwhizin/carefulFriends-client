@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 const postData = (activity, history, setError) => {
   if (!activity) return;
-  fetch("https://carefulfriends-api.herokuapp.com/activities", {
+  fetch("/activities", {
     method: "POST",
     body: JSON.stringify({
       activityName: activity,
