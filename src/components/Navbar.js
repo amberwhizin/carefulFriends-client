@@ -9,7 +9,7 @@ const Navbar = () => {
   const history = useHistory();
   const logout = (e) => {
     e.preventDefault();
-    fetch("/logout", {
+    fetch("https://carefulfriends-api.herokuapp.com/logout", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

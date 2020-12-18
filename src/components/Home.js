@@ -21,16 +21,20 @@ const Comment = ({
   const [editingComment, setEditingComment] = useState(activitiesComment.text);
   const updateComment = (e) => {
     e.preventDefault();
-    fetch("/comment/" + activitiesComment._id, {
-      method: "PUT",
-      body: JSON.stringify({
-        text: editingComment,
-        _activityId: activity._id,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "https://carefulfriends-api.herokuapp.com/comment/" +
+        activitiesComment._id,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          text: editingComment,
+          _activityId: activity._id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((res) => {
         getData();
@@ -77,7 +81,7 @@ const ActivityCard = ({ activity, getData }) => {
   const [comment, setComment] = useState("");
   const createComment = (e) => {
     e.preventDefault();
-    fetch("/comment", {
+    fetch("https://carefulfriends-api.herokuapp.com/comment", {
       method: "POST",
       body: JSON.stringify({
         text: comment,
@@ -102,16 +106,19 @@ const ActivityCard = ({ activity, getData }) => {
       return i !== index;
     });
     const currentItem = userComments[index];
-    fetch("/comment/" + currentItem._id, {
-      method: "DELETE",
-      body: JSON.stringify({
-        text: comment,
-        _activityId: activity._id,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "https://carefulfriends-api.herokuapp.com/comment/" + currentItem._id,
+      {
+        method: "DELETE",
+        body: JSON.stringify({
+          text: comment,
+          _activityId: activity._id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((res) => {
         getData();
@@ -178,7 +185,7 @@ const Home = () => {
   }, []);
 
   const getData = () => {
-    fetch("/activities")
+    fetch("https://carefulfriends-api.herokuapp.com/activities")
       .then((data) => data.json())
       .then((parsedData) => {
         if (parsedData.error) {

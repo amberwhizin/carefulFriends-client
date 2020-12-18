@@ -14,7 +14,7 @@ const Login = () => {
 
   const LoginUser = (e) => {
     e.preventDefault();
-    fetch("/login", {
+    fetch("https://carefulfriends-api.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify({
         name: user,
