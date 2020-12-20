@@ -13,6 +13,7 @@ const postData = (activity, history, setError) => {
       activityName: activity,
     }),
     headers: {
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
   })

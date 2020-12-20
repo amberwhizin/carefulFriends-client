@@ -12,6 +12,7 @@ const Navbar = () => {
     fetch("https://carefulfriends-api.herokuapp.com/logout", {
       method: "DELETE",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     })

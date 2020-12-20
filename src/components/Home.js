@@ -31,6 +31,7 @@ const Comment = ({
           _activityId: activity._id,
         }),
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       }
@@ -88,6 +89,7 @@ const ActivityCard = ({ activity, getData }) => {
         _activityId: activity._id,
       }),
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     })
@@ -115,6 +117,7 @@ const ActivityCard = ({ activity, getData }) => {
           _activityId: activity._id,
         }),
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       }
@@ -185,7 +188,12 @@ const Home = () => {
   }, []);
 
   const getData = () => {
-    fetch("https://carefulfriends-api.herokuapp.com/activities")
+    fetch("https://carefulfriends-api.herokuapp.com/activities", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    })
       .then((data) => data.json())
       .then((parsedData) => {
         if (parsedData.error) {
