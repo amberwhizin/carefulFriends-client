@@ -15,14 +15,17 @@ const Login = () => {
   const LoginUser = (e) => {
     e.preventDefault();
     fetch("https://carefulfriends-api.herokuapp.com/login", {
-      // credentials: "include",
+      credentials: "include",
+      // withCredentials: true,
       method: "POST",
       body: JSON.stringify({
         name: user,
         password: password,
       }),
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "carefulfriends-api.herokuapp.com",
+        "Access-Control-Allow-Header": "carefulfriends-api.herokuapp.com",
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "application/json",
       },
     })

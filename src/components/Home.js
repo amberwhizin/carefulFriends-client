@@ -190,7 +190,11 @@ const Home = () => {
   const getData = () => {
     fetch("https://carefulfriends-api.herokuapp.com/activities", {
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin":
+          "https://carefulfriends-api.herokuapp.com",
+        "Access-Control-Allow-Header":
+          "https://carefulfriends-api.herokuapp.com",
+        "Access-Control-Allow-Credentials": true,
         "Content-Type": "application/json",
       },
     })
