@@ -1,7 +1,7 @@
 import React from "react";
 import BootstrapNavbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-
+import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 
@@ -9,15 +9,9 @@ const Navbar = () => {
   const history = useHistory();
   const logout = (e) => {
     e.preventDefault();
-    fetch("https://carefulfriends-api.herokuapp.com/logout", {
-      method: "DELETE",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((res) => {
+    axios
+      .delete("https://carefulfriends-api.herokuapp.com/logout")
+      .then(() => {
         history.push("/login");
       })
       .catch((error) => {

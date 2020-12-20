@@ -9,6 +9,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
 import { FaRegCommentDots, FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
+import axios from "axios";
 
 const Comment = ({
   activitiesComment,
@@ -21,22 +22,15 @@ const Comment = ({
   const [editingComment, setEditingComment] = useState(activitiesComment.text);
   const updateComment = (e) => {
     e.preventDefault();
-    fetch(
-      "https://carefulfriends-api.herokuapp.com/comment/" +
-        activitiesComment._id,
-      {
-        method: "PUT",
-        body: JSON.stringify({
+    axios
+      .put(
+        "https://carefulfriends-api.herokuapp.com/comment/" +
+          activitiesComment._id,
+        {
           text: editingComment,
           _activityId: activity._id,
-        }),
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
+        }
+      )
       .then((res) => {
         getData();
         setIsEditing(false);
@@ -82,17 +76,11 @@ const ActivityCard = ({ activity, getData }) => {
   const [comment, setComment] = useState("");
   const createComment = (e) => {
     e.preventDefault();
-    fetch("https://carefulfriends-api.herokuapp.com/comment", {
-      method: "POST",
-      body: JSON.stringify({
+    axios
+      .post("https://carefulfriends-api.herokuapp.com/comment", {
         text: comment,
         _activityId: activity._id,
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
+      })
       .then((response) => response.json())
       .then((res) => {
         getData();
@@ -108,21 +96,14 @@ const ActivityCard = ({ activity, getData }) => {
       return i !== index;
     });
     const currentItem = userComments[index];
-    fetch(
-      "https://carefulfriends-api.herokuapp.com/comment/" + currentItem._id,
-      {
-        method: "DELETE",
-        body: JSON.stringify({
+    axios
+      .delete(
+        "https://carefulfriends-api.herokuapp.com/comment/" + currentItem._id,
+        {
           text: comment,
           _activityId: activity._id,
-        }),
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
+        }
+      )
       .then((res) => {
         getData();
         setComment("");
@@ -188,22 +169,16 @@ const Home = () => {
   }, []);
 
   const getData = () => {
-    fetch("https://carefulfriends-api.herokuapp.com/activities", {
-      headers: {
-        "Access-Control-Allow-Origin":
-          "https://carefulfriends-api.herokuapp.com",
-        "Access-Control-Allow-Header":
-          "https://carefulfriends-api.herokuapp.com",
-        "Access-Control-Allow-Credentials": true,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((data) => data.json())
-      .then((parsedData) => {
-        if (parsedData.error) {
+    axios
+      .get("https://carefulfriends-api.herokuapp.com/activities", {
+        withCredentials: true,
+      })
+      .then(({ data }) => {
+        console.log({ data });
+        if (data.error) {
           history.push("/login");
         }
-        setActivitiesList(parsedData);
+        // setActivitiesList(data);
       })
       .catch((e) => console.error(e));
   };

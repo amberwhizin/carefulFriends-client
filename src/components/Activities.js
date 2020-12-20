@@ -4,19 +4,15 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Spinner from "react-bootstrap/Spinner";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const postData = (activity, history, setError) => {
   if (!activity) return;
-  fetch("https://carefulfriends-api.herokuapp.com/activities", {
-    method: "POST",
-    body: JSON.stringify({
+
+  axios
+    .post("https://carefulfriends-api.herokuapp.com/activities", {
       activityName: activity,
-    }),
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  })
+    })
     .then((res) => {
       if (res.status !== 400) {
         // useHistory provides a minimal API that lets you navigate state, in this case I used it instead of Link!

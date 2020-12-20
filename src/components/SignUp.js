@@ -6,6 +6,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   const [user, setUser] = useState("");
@@ -14,18 +15,14 @@ const SignUp = () => {
 
   const SignUpUser = (e) => {
     e.preventDefault();
-    fetch("https://carefulfriends-api.herokuapp.com/signup", {
-      method: "POST",
-      body: JSON.stringify({
-        name: user,
-        password: password,
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
+    axios
+      .post(
+        "https://carefulfriends-api.herokuapp.com/login",
+        { name: user, password },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         history.push("/");
       })
@@ -59,11 +56,7 @@ const SignUp = () => {
         </Form.Group>
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 3 }}>
-            <Button
-              type="submit"
-              onClick={SignUpUser}
-              className="enter-button"
-            >
+            <Button type="submit" onClick={SignUpUser} className="enter-button">
               Sign Up
             </Button>
           </Col>

@@ -6,6 +6,7 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -14,22 +15,14 @@ const Login = () => {
 
   const LoginUser = (e) => {
     e.preventDefault();
-    fetch("https://carefulfriends-api.herokuapp.com/login", {
-      credentials: "include",
-      // withCredentials: true,
-      method: "POST",
-      body: JSON.stringify({
-        name: user,
-        password: password,
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "carefulfriends-api.herokuapp.com",
-        "Access-Control-Allow-Header": "carefulfriends-api.herokuapp.com",
-        "Access-Control-Allow-Credentials": true,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
+    axios
+      .post(
+        "https://carefulfriends-api.herokuapp.com/login",
+        { name: user, password },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         history.push("/");
       })
