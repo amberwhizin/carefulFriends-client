@@ -177,8 +177,9 @@ const Home = () => {
         console.log({ data });
         if (data.error) {
           history.push("/login");
+        } else {
+          setActivitiesList(data);
         }
-        // setActivitiesList(data);
       })
       .catch((e) => console.error(e));
   };
