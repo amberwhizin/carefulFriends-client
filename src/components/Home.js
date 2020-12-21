@@ -29,6 +29,9 @@ const Comment = ({
         {
           text: editingComment,
           _activityId: activity._id,
+        },
+        {
+          withCredentials: true,
         }
       )
       .then((res) => {
@@ -77,10 +80,16 @@ const ActivityCard = ({ activity, getData }) => {
   const createComment = (e) => {
     e.preventDefault();
     axios
-      .post("https://carefulfriends-api.herokuapp.com/comment", {
-        text: comment,
-        _activityId: activity._id,
-      })
+      .post(
+        "https://carefulfriends-api.herokuapp.com/comment",
+        {
+          text: comment,
+          _activityId: activity._id,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => response.json())
       .then((res) => {
         getData();
@@ -102,6 +111,9 @@ const ActivityCard = ({ activity, getData }) => {
         {
           text: comment,
           _activityId: activity._id,
+        },
+        {
+          withCredentials: true,
         }
       )
       .then((res) => {
