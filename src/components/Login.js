@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     axios
       .post(
-        "https://carefulfriends-api.herokuapp.com/activities",
+        "https://carefulfriends-api.herokuapp.com/login",
         { name: user, password },
         {
           withCredentials: true,
