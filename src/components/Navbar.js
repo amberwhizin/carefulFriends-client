@@ -10,7 +10,9 @@ const Navbar = () => {
   const logout = (e) => {
     e.preventDefault();
     axios
-      .delete("https://carefulfriends-api.herokuapp.com/logout")
+      .delete("https://carefulfriends-api.herokuapp.com/logout", {
+        withCredentials: true,
+      })
       .then(() => {
         history.push("/login");
       })
