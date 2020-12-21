@@ -10,9 +10,13 @@ const postData = (activity, history, setError) => {
   if (!activity) return;
 
   axios
-    .post("https://carefulfriends-api.herokuapp.com/activities", {
-      activityName: activity,
-    })
+    .post(
+      "https://carefulfriends-api.herokuapp.com/activities",
+      {
+        activityName: activity,
+      },
+      { withCredentials: true }
+    )
     .then((res) => {
       if (res.status !== 400) {
         // useHistory provides a minimal API that lets you navigate state, in this case I used it instead of Link!
