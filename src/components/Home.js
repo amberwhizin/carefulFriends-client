@@ -190,7 +190,10 @@ const Home = () => {
           setActivitiesList(data);
         }
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        history.push("/login");
+        console.error(e);
+      });
   };
 
   return (
