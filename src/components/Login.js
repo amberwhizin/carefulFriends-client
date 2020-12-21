@@ -21,6 +21,15 @@ const Login = () => {
         { name: user, password },
         {
           withCredentials: true,
+          headers: {
+            "Access-Control-Allow-Origin":
+              "https://carefulfriends-api.herokuapp.com",
+            "Access-Control-Allow-Header":
+              "https://carefulfriends-api.herokuapp.com",
+            "Access-Control-Max-Age": 86400,
+            "Access-Control-Allow-Credentials": true,
+            "Content-Type": "application/json",
+          },
         }
       )
       .then((res) => {
