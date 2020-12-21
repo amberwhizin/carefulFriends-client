@@ -90,7 +90,6 @@ const ActivityCard = ({ activity, getData }) => {
           withCredentials: true,
         }
       )
-      .then((response) => response.json())
       .then((res) => {
         getData();
         setComment("");
