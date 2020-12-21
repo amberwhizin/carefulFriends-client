@@ -110,8 +110,6 @@ const ActivityCard = ({ activity, getData }) => {
         {
           text: comment,
           _activityId: activity._id,
-        },
-        {
           withCredentials: true,
         }
       )
