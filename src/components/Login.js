@@ -17,10 +17,19 @@ const Login = () => {
     e.preventDefault();
     axios
       .post(
-        "https://carefulfriends-api.herokuapp.com/login",
+        "https://carefulfriends-api.herokuapp.com/activities",
         { name: user, password },
         {
           withCredentials: true,
+          credentials: "same-origin",
+          headers: {
+            "Access-Control-Allow-Origin":
+              "https://carefulfriends-api.herokuapp.com",
+            "Access-Control-Allow-Header":
+              "https://carefulfriends-api.herokuapp.com",
+            "Access-Control-Allow-Credentials": true,
+            "Content-Type": "application/json",
+          },
         }
       )
       .then((res) => {
